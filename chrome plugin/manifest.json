@@ -1,0 +1,16 @@
+{
+	"name": "无障碍助手",
+	"version": "1.0",
+	"manifest_version": 2,
+	"description": "无障碍助手",
+	"browser_action": {
+		"default_icon": "icon.gif"
+	},
+	"content_scripts" : [{
+		"matches" : [
+			"http://*/*",
+			"https://*/*"
+		],
+		"js" : ["access-helper.js"]
+	}]
+}

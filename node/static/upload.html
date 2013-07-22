@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<title>上传脚本</title>
+	<style>
+    body{
+        font-family: "Microsoft YaHei" "宋体";
+    }
+    
+    #submit_head{
+        padding: 10px 20px 10px  40px;
+        font-size: 16px;
+        margin: 10px 10px 20px;
+        border-bottom: 1px solid #000;
+    }
+    
+    .inputfield{
+        clear: both;
+        margin-top:10px;
+        font-size: 13px;
+    }
+    
+    .inputfield label{
+        float: left;
+        width: 120px;
+        text-align: right;
+        line-height: 25px;
+        height: 25px;
+        font-weight: bold;
+    }
+    
+    .inputfield input{
+        width: 200px;
+        margin-left: 10px;
+    }
+    
+    .inputfield .input_tips{
+        color: #999;
+        margin-left: 5px;
+        font-size: 12px;
+    }
+    
+    #submit{
+        margin-top: 20px;
+        margin-left: 60px;
+        padding: 5px 10px;
+    }
+    
+    .cb{
+        clear: both;
+    }
+	</style>
+</head>
+<body>
+    
+    <div id="submit_head">请上传JS脚本</div>
+    
+	<form id="myForm" action="/post" method="post" enctype="multipart/form-data">
+        <div class="inputfield">
+            <label for="file">脚本:</label>
+            <input id="file" name="file" type="file" accept="application/javascript" />
+        </div>
+        <div class="inputfield">
+            <label for="name">名称:</label>
+            <input id="name" name="name" type="text" />
+            <span class="input_tips">支持字母数字下划线</span>
+        </div>
+        <div class="inputfield">
+            <label for="domain">域名:</label>
+            <input id="domain" name="domain" type="text" />
+            <span class="input_tips">多个以逗号分隔,支持^匹配开头$匹配结尾</span>
+        </div>
+        
+        <div class="inputfield">
+            <label for="domain_black">排除域名:</label>
+            <input id="domain_black" name="domain_black" type="text" />
+            <span class="input_tips">同上</span>
+        </div>
+        <div class="inputfield">
+            <label for="keyword">关键词:</label>
+            <input id="keyword" name="keyword" type="text" />
+            <span class="input_tips">同上</span>
+        </div>
+        <div class="inputfield">
+            <label for="keyword_black">排除关键词:</label>
+            <input id="keyword_black" name="keyword_black" type="text" />
+            <span class="input_tips">同上</span>
+        </div>
+        <div class="cb"></div>
+		<input type="submit" id="submit" value="提交"/>
+	</form>
+    
+	<script>
+	~function(){
+		var id = function(i){
+			return document.getElementById(i);
+		};
+		var on = function(el, evt, func){
+			if(window.addEventListener){
+				return function(el, evt, func){
+					el.addEventListener(evt, func, false);
+				}
+			}else if(window.attachEvent){
+				return function(el, evt, func){
+					el.attachEvent('on'+evt, func);
+				}
+			}
+		}();
+		var preventDefault = function(evt){
+			if(evt && evt.preventDefault){
+				evt.preventDefault();
+			}else if(window.event){
+				window.event.returnValue = false;
+			}
+		};
+		var trim = function(str){
+			if(''.trim){
+				return function(str){
+					return str.trim();
+				}
+			}else{
+				return function(str){
+					return str.replace(/^\s+/,'').replace(/\s+$/,'');
+				}
+			}
+		}();
+		var format = function(el){
+			var arr = el.value.split(',');
+			for(var i = 0; i < arr.length; i++){
+				arr[i] = trim(arr[i]);
+				if(!arr[i]){
+					arr.splice(i, 1);
+					i--;
+				}
+			}
+			el.value = arr.join();
+		}
+		on(id('myForm'), 'submit', function(e){
+			var domain;
+			if(!id('file').value){
+				alert('请选择文件');
+				preventDefault(e);
+			}else if(!/^\w+$/.test(id('name').value)){
+				alert('请正确输入名称');
+				preventDefault(e);
+			}else{
+				format(id('keyword'));
+				format(id('keyword_black'));
+				format(id('domain'));
+				format(id('domain_black'));
+				if(id('keyword').value == '' && id('domain').value == ''){
+					alert('域名和关键词至少要填1个');
+					preventDefault();
+					return;
+				}
+			}
+		});
+	}();
+	</script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>测试demo13</title>
+    </head>
+    <body>
+    
+        <p>Demo:将页面上的a，input，button，img，textarea的鼠标事件全迁移到焦点或输入事件，对应关系是：onmouseover -> onfocus; onmouseout -> onblur;onmousedown -> onkeydown;onmouseup -> onkeyup</p>
+        <a href="index.html">返回主页面</a>
+        
+        <p tabindex="0">下面的input绑定了mouseover，需要将用focus代替mouseover事件</p>
+        <input type="text" value="" onmouseover="document.getElementById('test').innerText='mouseover';" tabindex="0"/>
+        
+        <p id="test" tabindex="-1"></p>
+        
+    </body>
+</html>
+

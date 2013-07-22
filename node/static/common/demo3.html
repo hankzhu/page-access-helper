@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>测试demo3</title>
+    </head>
+    <body>
+        <p>Demo:链接有title时，链接下的图片均可视为装饰信息，将img的alt取掉，以免读取图片信息</p>
+        <a href="index.html">返回主页面</a>
+        
+        <p>下面有一个链接，链接中包含img，读屏软件会先读img的alt，再读链接的title</p>
+        <p>大多数情况下，链接的title已足够提示该链接的作用，因此img的alt无太大意义</p>
+        
+        <a href="###" title="这是链接的title">
+            <img src="http://imgcache.qq.com/ac/www_tencent/zh-cn/images/sitelogo_zh-cn.gif" alt="这是图片的alt" />
+        </a>
+        
+        
+    </body>
+</html>
+

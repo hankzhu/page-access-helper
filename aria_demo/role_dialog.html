@@ -1,0 +1,24 @@
+<HTML>
+<HEAD>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <TITLE>aira demo</TITLE>
+</HEAD>
+
+<BODY>
+	<a role="botton" href="javascript:;" onclick="openDialog();return false;">open a dialog</a>
+	<div id="dialog1" role="dialog" style="display:none;border:1px solid black;" aria-labelledby="title" aria-describedby="desp" aria-label="labelss">
+		<div id="title">一个的标题</div>
+		<div id="desp">这是一段描述</div>
+		<div id="labelss">尼玛</div>
+		<a href="javscript:;" onclick="return false;" id="sure">确定</a>
+	</div>
+	<script type="text/javascript">
+		function openDialog(){
+			document.getElementById('dialog1').style.display = 'block';
+			document.getElementById('sure').focus();
+
+		}
+	</script>
+</BODY>
+
+</HTML>

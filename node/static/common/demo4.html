@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>测试demo4</title>
+    </head>
+    <body>
+        <p>Demo:链接没有title时，取链接下img的alt（第一个有效值）作为连接title，同时取掉下面所有img的alt</p>
+        <a href="index.html">返回主页面</a>
+        
+        <p>下面有一个链接，链接没有title，读屏软件会只读链接下2个img的alt</p>
+        <p>为减少图片alt带来的干扰，保证链接title的一致性，将第一个img的alt赋给链接做title，同时移除下面所有img的alt</p>
+        
+        <a href="###">
+            <img src="http://imgcache.qq.com/ac/www_tencent/zh-cn/images/sitelogo_zh-cn.gif" alt="这是图片1的alt" style="display:block;"/>
+            <img src="http://imgcache.qq.com/ac/www_tencent/zh-cn/images/sitelogo_zh-cn.gif" alt="这是图片2的alt" style="display:block;" />
+        </a>
+        
+        
+    </body>
+</html>
+

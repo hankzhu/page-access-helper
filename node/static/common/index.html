@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>common逻辑实现清单</title>
+        <style type="text/css">
+        	div, li {line-height: 25px;}
+        	.g_title {margin: 10px 0 5px; font-weight:bold;}
+        	a{margin-left: 10px;}
+        </style>
+    </head>
+    <body>
+        <p>以下是common逻辑的实现清单</p>
+        <ul>
+        	<li>
+        		<div class="g_title">添加html中lang属性</div>
+        	</li>
+        	<li>
+        		<div class="g_title">A标签去噪</div>
+        		<div class="g_item">
+        			<ul>
+                        <!--
+        				<li>没有title没有文字，且没有有效的img（img没有alt），或有背景图片样式，将a标签的tabindex设置为-1<a href="demo1.html">demo</a></li>
+        				-->
+                        <li>又有img又有文字，且文字内容跟img的alt一致时，取掉img的alt，以免重复读屏<a href="demo2.html">demo</a></li>
+        				<li>链接有title时，链接下的图片均可视为装饰信息，将img的alt取掉，以免读取图片信息<a href="demo3.html">demo</a></li>
+        				<li>链接没有title时，取链接下img的alt（第一个有效值）作为连接title，同时取掉下面所有img的alt<a href="demo4.html">demo</a></li>
+        				<li>既没有title也没有内部文字时，提供文字提示:这是一个指向XXX的链接<a href="demo5.html">demo</a></li>
+        				<li>既有title又有文字且信息一致时，去除链接title<a href="demo6.html">demo</a></li>
+        			</ul>
+        		</div>
+        	</li>
+        	<li>
+        		<div class="g_title">处理img</div>
+        		<div class="g_item">
+        			<ul>
+        				<li>图片高度或宽度小于8像素的，将alt清空，设置aria-hidden为true<a href="demo7.html">demo</a></li>
+        			</ul>
+        		</div>
+        	</li>
+            <!--
+        	<li>
+        		<div class="g_title">处理input</div>
+        		<div class="g_item">
+        			<ul>
+        				<li>针对type = image，button, reset, submit,当其没有title和value时，为其增加title<a href="demo8.html">demo</a></li>
+        				<li>针对button标签，当其没有文字内容时，增加文字提示<a href="demo9.html">demo</a></li>
+        				<li>针对label标签，当其没有文字内容时，查找其对应的input，将对应input的title，value或text设置为label的内容<a href="demo10.html">demo</a></li>
+        			</ul>
+        		</div>
+        	</li>
+            -->
+        	<li>
+        		<div class="g_title">事件响应类</div>
+        		<div class="g_item">
+        			<ul>
+        				<li>移除页面上onfocus=this.blur()，保留其它onfocus事件<a href="demo11.html">demo</a></li>
+        				<li>检查页面上div，p，li，td，如果其有设置onclick事件，则为其添加tabindex使其可focus，并添加keypress事件，当用户输入enter时出发onclick事件<a href="demo12.html">demo</a></li>
+        				<li>将页面上的a，input，button，img，textarea的鼠标事件全迁移到焦点或输入事件，对应关系是：onmouseover -> onfocus; onmouseout -> onblur;onmousedown -> onkeydown;onmouseup -> onkeyup<a href="demo13.html">demo</a></li>
+        			</ul>
+        		</div>
+        	</li>
+        </ul>
+    </body>
+</html>
+

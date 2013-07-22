@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>测试demo4</title>
+        <style type="text/css">
+        a, a:focus{outline:none;}
+        </style>
+    </head>
+    <body>
+        <p tabindex="1">下面的4个链接中，第三个链接绑定了onfous=this.blur()方法，当用户使用tab键移到第三个链接时，将会丢失焦点，从文档头部重新开始</p>
+        
+        <a href="###" tabindex="1">第一个链接</a> &nbsp;&nbsp;&nbsp;
+        <a href="###" tabindex="1" style="outline:none;" onclick="alert(2);">第二个链接</a> &nbsp;&nbsp;&nbsp;
+        <a href="###" tabindex="1" >第三个链接</a> &nbsp;&nbsp;&nbsp;
+        <a href="###" tabindex="1">第四个链接</a> &nbsp;&nbsp;&nbsp;
+
+        <script src="PAHelper.Common.js"></script>
+    </body>
+</html>
