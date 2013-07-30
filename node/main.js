@@ -36,7 +36,7 @@ var responseError = function(code, res){
 }
 
 var cache = {};
-var cache_12306 = FS.readFileSync('..\\special\\12306.user.js');
+var cache_12306 = FS.readFileSync(__dirname+'/special/12306.user.js');
 var EXT_TO_TYPE_MAP = {
 	'js':'application/javascript; charset=utf-8',
 	'html':'text/html; charset=utf-8',
@@ -172,7 +172,7 @@ var checkRule = function(url, keyword, rule){
 	return true;
 };
 
-var accessPrefix = FS.readFileSync('.\\static\\help.js', {encoding:'utf-8'});
+var accessPrefix = FS.readFileSync(__dirname+'/static/help.js');
 var handlers = {
 	'/access.js':function(req, res){
 		var url = URL.parse(req.url, true);
@@ -215,7 +215,7 @@ var handlers = {
 	'/post':function(req, res){
 		if(req.method.toUpperCase() == 'POST'){
 			var form = new FORM.IncomingForm();
-			form.uploadDir = '.\\tmp';
+			form.uploadDir = __dirname+'/tmp';
 			form.parse(req, function(err, fields, files){
 				if(err){
 					console.info('parse form error');
@@ -229,7 +229,7 @@ var handlers = {
 					responseError(403, res);
 					return;
 				}
-				var path = '.\\rules\\' + Date.now() + '_' + Math.floor(Math.random()*1000);
+				var path = __dirname+'/rules/' + Date.now() + '_' + Math.floor(Math.random()*1000);
 				FS.rename(files.file.path, path, function(err){
 					if(err){
 						console.info('save script error',err);
@@ -258,7 +258,7 @@ var handlers = {
 
 //loadRules
 var TYPE_TO_FILE_PATH = {
-	'common':'..\\common\\PAHelper.Common.js'
+	'common':__dirname+'/common/PAHelper.Common.js'
 };
 var innerRules = [{
 	name : 'news',
@@ -266,14 +266,14 @@ var innerRules = [{
 	domain_black : ['/$','/index'],
 	keyword : ['new','新闻','finance','财经'],
 	keyword_black : [],
-	path : '..\\readability\\access-helper.js'
+	path : __dirname+'/readability/access-helper.js'
 },{
 	name : '12306',
 	domain : ['12306.cn'],
 	domain_black : [],
 	keyword : [],
 	keyword_black : [],
-	path : '..\\special\\12306.user.js'
+	path : __dirname+'/special/12306.user.js'
 }];
 var extRules = [];
 try{
@@ -313,10 +313,10 @@ HTTP.createServer(function (req, res) {
 	if(handler){
 		handler(req, res);
 	}else{
-		responseFile('.\\static\\'+url.pathname, res);
+		responseFile(__dirname+'/static/'+url.pathname, res);
 	}
-}).listen(80);
-console.log('Server running at http://127.0.0.1/');
+}).listen(12005);
+console.log('Server running at http://127.0.0.1:12005/');
 
 /*HTTPS.createServer({
 	key: FS.readFileSync('ssl.key'),
